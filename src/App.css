@@ -1,3 +1,13 @@
+body {
+  font-family: sans-serif; /* Устанавливаем гротескный шрифт для всего текста */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .header {
   background-color: blueviolet;
   width: 100%;
@@ -8,13 +18,13 @@
   max-width: 1350px;
   margin: 0 auto;
   border: 1px solid green;
-  height: 118px;
+  height: 100%;
 }
 
 .header-box {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -35,7 +45,8 @@
 
 .header-search input {
   padding: 10px 77px 10px 5px;
-  width: 450px;
+  width: 550px;
+  min-width: 100%;
   border-radius: 7px;
   outline: none;
   border: none;
@@ -45,12 +56,12 @@
   display: flex;
   color: white;
   font-size: 17px;
-  gap: 35px;
+  gap: 50px; /*было 35*/
 }
 
 .header-info--adresses,
 .header-info--login,
-.header-info--bin{
+.header-info--bin {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,7 +71,336 @@
 .header-info--adresses img,
 .header-info--bin img,
 .header-info--login img {
-  width: 30px;
-  height: 30px;
+  width: 23px;
+  height: 23px;
 }
 
+.back-to-main-page {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 30px 0px;
+  font-size: 17px;
+  color: darkgrey;
+  border: 1px solid #883131;
+}
+
+.back-to-main-page img {
+  width: 20px;
+  height: 20px;
+}
+
+.product-box {
+  display: flex;
+  border: 1px solid #883131;
+  gap: 30px;
+}
+
+.product-images {
+  display: flex;
+  max-width: 560px;
+  border: 1px solid #445554;
+  min-height: 570px;
+}
+
+.little-slider {
+  width: 20%;
+  margin-right: 20px;
+  /* height: auto; */
+  position: relative;
+  overflow: hidden;
+  height: 570px;
+}
+
+/* .little-slider.slick-arrow.slick-prev::before {
+  display: block;
+  background-color: #4787bf;
+  z-index: 3;
+  top: 10px;
+  position: absolute;
+} */
+
+.little-slider img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 10px; /* Добавляем border-radius */
+}
+
+.big-slider {
+  width: 80%;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #4343be;
+  cursor: pointer;
+  /* height: 100%; */
+  height: 570px;
+}
+
+.big-slider img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Стили для стрелок */
+.big-slider .slick-arrow,
+.little-slider .slick-arrow {
+  display: block;
+  z-index: 3;
+  position: absolute;
+}
+
+.big-slider .slick-prev,
+.little-slider .slick-prev {
+  left: 0px; /* Позиционирование стрелки "назад" */
+}
+
+.big-slider .slick-next {
+  right: 12px; /* Позиционирование стрелки "вперед" */
+}
+
+/* .little-slider .slick-next {
+  top: 410px;
+  left: 10px;
+} */
+
+/* .little-slider .slick-next {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+} */
+
+/* .little-slider .slick-prev {
+  top: 12px;
+  left: 20px;
+} */
+
+.little-slider .slick-prev {
+  top: 10px; /* Позиционирование стрелки "назад" */
+  left: 45%;
+  /* transform: translateX(-50%); */
+  transform: rotate(90deg);
+}
+
+/* Дополнительные стили для стрелок */
+.big-slider .slick-arrow::before,
+.little-slider .slick-next::before,
+.little-slider .slick-prev::before {
+  color: #b7b7b7; /* Цвет стрелки */
+  font-size: 30px; /* Размер стрелки */
+}
+
+/* .little-slider .slick-next::before {
+  position: absolute;
+  left: 10px;
+  top: -8px;
+} */
+
+.little-slider .slick-next {
+  /* bottom: 10px; */
+  /* left: 50%;
+  transform: translate(-15px, 200px); */
+    left: 45%;
+    top: 91%;
+    transform: rotate(90deg);
+}
+
+.product-info {
+  max-width: 400px;
+}
+
+.info-brend {
+  display: flex;
+  background-color: #dbdada;
+  padding: 5px;
+  max-width: 130px;
+  border-radius: 10px;
+  margin-bottom: 13px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+/* .info-brend--text{
+} */
+
+.next-icon {
+  width: 19px;
+  height: 19px;
+}
+
+.info-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.info-rating {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.info-rating img {
+  width: 7px;
+  height: 7px;
+}
+
+.info-rating .next-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.stars {
+  display: flex;
+  gap: 3px;
+}
+
+.stars img {
+  width: 15px;
+  height: 15px;
+}
+
+.second-info {
+  margin-top: 30px;
+}
+
+.second-info--first {
+  margin-bottom: 10px;
+}
+
+.second-info img {
+  width: 54px;
+  height: 70px;
+  border-radius: 5px;
+}
+
+.second-info--main {
+  margin-top: 30px;
+}
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.info-label {
+  font-weight: bold;
+  margin-right: 20px;
+  flex-shrink: 0;
+  width: 180px; 
+  color: grey;
+}
+
+.info-value {
+  flex-grow: 1;
+}
+
+.product-price {
+  width: 330px;
+  max-width: 100%;
+  height: 260px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.red-and-grey-price {
+  display: flex;
+  gap: 15px;
+  align-items: baseline;
+}
+
+.red-price {
+  color: brown;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.grey-crossed-price {
+  font-size: 15px;
+  color: grey;
+  text-decoration: line-through; /* Перечеркивание текста */
+}
+
+.price-low {
+  margin: 20px 0 15px;
+  background-color: #e6e1e1;
+  height: 35px;
+  padding: 9px;
+  border-radius: 7px;
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-low img {
+  width: 20px;
+  height: 20px;
+}
+
+.low {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.low img {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.low .price {
+  color: rgb(6, 146, 6);
+  font-weight: 600;
+}
+
+.button-card {
+  background-color: blueviolet;
+  padding: 15px 63px;
+  color: white;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.box{
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.box img {
+  width: 18px;
+  height: 18px;
+}
+
+.box-wb {
+  color: grey;
+}
+
+.shop {
+  display: flex;
+  gap: 6px;
+}
+
+.shop img {
+  width: 18px;
+  height: 18px;
+}
+
+.all-description {
+  margin-top: 20px;
+  cursor: pointer;
+  text-decoration: underline dotted;
+}
+
+.all-description:hover{
+  color: blueviolet;
+}
