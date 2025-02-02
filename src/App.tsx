@@ -16,38 +16,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import Coffee1 from "./images/Карусель слайд 1.png";
-import Coffee2 from "./images/Карусель слайд 2.png";
-import Coffee3 from "./images/Карусель слайд 3.png";
-import Coffee4 from "./images/Карусель слайд 4.png";
-import Coffee5 from "./images/Карусель слайд 5.png";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
-  const bigSlider = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-  };
 
-  const littleSlider = {
-    dots: false,
-    arrows: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    focusOnSelect: true,
-    vertical: true,
-    verticalSwiping: true,
-    infinite: true,
-    swipeToSlide: true,
-  };
-
-  const images = [Coffee1, Coffee2, Coffee3, Coffee4, Coffee5];
+  const [images, setImages] = useState<string[]>([]);
 
   const [navBigSlider, setNavBigSlider] = useState<Slider | undefined>(
     undefined
@@ -55,6 +29,82 @@ function App() {
   const [navLittleSlider, setNavLittleSlider] = useState<Slider | undefined>(
     undefined
   );
+  const [isHovered, setIsHovered] = useState(false);
+
+  const littleSliderRef = useRef<HTMLDivElement | null>(null);
+
+  const littleSlider = {
+    dots: false,
+    arrows: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    focusOnSelect: true,
+    vertical: true,
+    verticalSwiping: true,
+    infinite: images.length >= 5,
+    swipeToSlide: true,
+  };
+
+  const bigSlider = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: images.length > 0,
+  };
+
+  const downloadImages = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+
+    if (file) {
+      const reader = new FileReader() //читается содержимое файла
+
+      reader.onloadend = () => {
+        const newImages = [...images, reader.result as string]
+        setImages(newImages)
+        localStorage.setItem('images', JSON.stringify(newImages))
+        console.log("Images after download:", newImages);
+      }
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  useEffect(() => {
+    const storedImages = localStorage.getItem('images')
+    if (storedImages) {
+      const parsedImages = JSON.parse(storedImages);
+      setImages(parsedImages);
+      console.log("Images from localStorage:", parsedImages);
+    }
+  }, [])
+
+  useEffect(() => {
+     // Функция для обновления позиции стрелки
+    const updateArrowPosition = () => {
+      if (littleSliderRef.current) {
+        const sliderHeight = littleSliderRef.current.clientHeight;
+        const arrow = littleSliderRef.current.querySelector('.slick-next')  as HTMLElement;
+        if (arrow) {
+          arrow.style.top = `${sliderHeight - 40}px`; // Adjust the position as needed
+        }
+      }
+    };
+
+    // Вызов функции для установки начальной позиции стрелки
+    updateArrowPosition();
+
+    // Добавление обработчика события resize(чтобы функция updateArrowPosition вызывалась каждый раз, когда размер окна изменяется)
+    window.addEventListener('resize', updateArrowPosition);
+
+    // Очистка обработчика события resize при размонтировании компонента
+    return () => {
+      window.removeEventListener('resize', updateArrowPosition);
+    };
+  }, [images]);
+  //Функция updateArrowPosition вызывается при изменении размера окна и при изменении состояния images.
 
   return (
     <>
@@ -94,7 +144,7 @@ function App() {
             </div>
             <div className="product-box">
               <div className="product-images">
-                <div className="little-slider">
+                <div className="little-slider" ref={littleSliderRef} style={{ border: '2px solid red' }} >
                   <Slider
                     {...littleSlider}
                     ref={(slider) => setNavLittleSlider(slider || undefined)}
@@ -108,7 +158,9 @@ function App() {
                   </Slider>
                 </div>
 
-                <div className="big-slider">
+                <div className="big-slider" 
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}>
                   <Slider
                     {...bigSlider}
                     ref={(slider) => setNavBigSlider(slider || undefined)}
@@ -120,6 +172,12 @@ function App() {
                       </div>
                     ))}
                   </Slider>
+                  <input type="file" onChange={downloadImages} style={{display : 'none'}} id="fileInput" />
+                  {images.length === 0 || isHovered ? (
+                    <label htmlFor="fileInput" className="download-btn">
+                      Добавить серию фото
+                    </label>
+                  ) : null}
                 </div>
               </div>
               <div className="product-info">
@@ -141,7 +199,11 @@ function App() {
                 </div>
                 <div className="second-info">
                   <div className="second-info--first">Черный</div>
-                  <img src={Coffee1} alt="иконка" />
+                  {images.length === 0 ? (
+                    <div className="first-photo"></div>
+                  ) : (
+                    <img src={images[0]} alt="иконка" />
+                  )}
                   <div className="second-info--main">
                     <div className="info-row">
                       <div className="info-label">Артикул</div>
