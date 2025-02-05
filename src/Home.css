@@ -1,0 +1,145 @@
+body {
+  font-family: sans-serif; /* Устанавливаем гротескный шрифт для всего текста */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1350px;
+  margin: 0 auto;
+  border: 1px solid green;
+  height: 100%;
+}
+
+h2 {
+  margin: 30px 0px;
+}
+
+/* .card-list {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 20px;
+} */
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px; /* Расстояние между карточками */
+}
+
+/* .card-item {
+  border: 1px solid #efeff0;
+    width: calc((100% - 40px) / 5);
+     отступы слева и справа
+    border-radius: 10px;
+    overflow: hidden; все что выходит за рамки блока (чаще всего это связано с картинками) - обрезается
+    cursor: pointer;
+} */
+
+/* .card-item {
+  border: 1px solid #efeff0;
+  width: calc((100% - 100px) / 5);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+} */
+
+.card-item {
+  border: 1px solid #efeff0;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card-item img {
+  width: 100%;
+  display: flex; /* хз */
+}
+
+.red-and-grey-price {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 13px 0px 4px;
+}
+
+.red-price {
+  color: #e72b2b;;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.grey-crossed-price {
+  font-size: 15px;
+  color: grey;
+  text-decoration: line-through; /* Перечеркивание текста */
+}
+
+.card-info {
+  display: flex;
+  gap: 3px;
+}
+
+.card-brend {
+  white-space: nowrap; /* Предотвращает перенос текста на новую строку */
+}
+
+.slash,
+.card-title {
+  color: grey;
+}
+
+.card-title {
+  white-space: nowrap; /* Предотвращает перенос текста на новую строку */
+  overflow: hidden; /* Скрывает переполнение текста */
+  text-overflow: ellipsis; /* Добавляет многоточие в конце обрезанного текста */
+  max-width: 100%; /* Ограничивает ширину текста */
+}
+
+.card-rating {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  margin: 8px 0px 10px;
+  font-size: 15px;
+}
+
+.card-rating img {
+  width: 7px;
+  height: 7px;
+}
+
+.card-btn {
+  background-color: blueviolet;
+  color: white;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  width: 100%;
+  padding: 8px 0px;
+}
+
+.btn-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  transform: translate(-10px, 0px);
+}
+
+.card-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+.card-btn h4 {
+  margin: 0px;
+}
