@@ -4,7 +4,7 @@ import Point from "./images/dot.svg";
 import Bin from "./images/bin.svg";
 
 
-import { ProductProps } from "./products"; // мы не передаем весь массив продакст мы передаем только один объект продакт из него - а точнее его пропсы
+import { ProductProps } from "./productProps"; // мы не передаем весь массив продакст мы передаем только один объект продакт из него - а точнее его пропсы
 
 interface CardItemProps {
     product: ProductProps
