@@ -117,7 +117,7 @@ export const Card = () => {
             </div>
             <div className="product-box">
               <div className="product-images">
-                <div className="little-slider" ref={littleSliderRef} style={{ border: '2px solid red' }} >
+                <div className="little-slider" ref={littleSliderRef} >
                   <Slider
                     {...littleSlider}
                     ref={(slider) => setNavLittleSlider(slider || undefined)}

@@ -1,3 +1,5 @@
+///пока не нужно это все
+
 import { supabase } from './supabase';
 import { ProductProps } from './productProps';
 import { mockData } from './mockData';

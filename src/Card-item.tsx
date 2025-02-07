@@ -2,17 +2,19 @@ import Next from "./images/next.svg";
 import Star from "./images/star.svg";
 import Point from "./images/dot.svg";
 import Bin from "./images/bin.svg";
+import './Home.css'
 
 
 import { ProductProps } from "./productProps"; // мы не передаем весь массив продакст мы передаем только один объект продакт из него - а точнее его пропсы
-
+import { Link } from 'react-router-dom';
 interface CardItemProps {
     product: ProductProps
 }
 
 export const CardItem: React.FC<CardItemProps> = ({product}) => {
     return (
-        <div className="card-item">
+       <Link to='/card' style={{ textDecoration: 'none', color: 'inherit' }}> 
+       <div className="card-item">
             <img src={product.image} alt="картинка" />
               <div className="red-and-grey-price">
                 <div className="red-price">{product.redPrice}</div>
@@ -39,5 +41,6 @@ export const CardItem: React.FC<CardItemProps> = ({product}) => {
                 </div>
             </button>
           </div>
+       </Link>
     )
 }

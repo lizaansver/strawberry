@@ -19,37 +19,13 @@ h2 {
   margin: 30px 0px;
 }
 
-/* .card-list {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  row-gap: 20px;
-} */
 
 .card-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr)); /* Фиксированное количество колонок */
   gap: 20px; /* Расстояние между карточками */
+  margin-bottom: 20px;
 }
-
-/* .card-item {
-  border: 1px solid #efeff0;
-    width: calc((100% - 40px) / 5);
-     отступы слева и справа
-    border-radius: 10px;
-    overflow: hidden; все что выходит за рамки блока (чаще всего это связано с картинками) - обрезается
-    cursor: pointer;
-} */
-
-/* .card-item {
-  border: 1px solid #efeff0;
-  width: calc((100% - 100px) / 5);
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-} */
 
 .card-item {
   border: 1px solid #efeff0;
