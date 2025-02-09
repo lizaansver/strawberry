@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
-import "./Home.css";
-import { Header } from "./header/Header";
-import { CardItem } from "./Card-item";
+import { useEffect, useState } from 'react'
+import './Home.css'
+import { Header } from '../header/Header'
+import { CardItem } from './Card-item'
 
-import getProducts from './getProducts';
-import { ProductProps } from "./productProps";
+import getProducts from '../../helpers/getProducts'
+import { ProductProps } from '../../models/productProps'
 
-
-
-export const Home:React.FC = () => {
-  const [productsWithPhoto, setProductsWithPhoto] = useState<ProductProps[]>([]);
+export const Home: React.FC = () => {
+  const [productsWithPhoto, setProductsWithPhoto] = useState<ProductProps[]>([])
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -27,10 +25,10 @@ export const Home:React.FC = () => {
         <h2>Миллионы товаров на ваш вкус</h2>
         <div className="card-list">
           {productsWithPhoto.map((product) => (
-            <CardItem key={product.id} product={product}/>
+            <CardItem key={product.id} product={product} />
           ))}
         </div>
       </div>
     </>
-  );
-};
+  )
+}

@@ -1,34 +1,33 @@
-import "./Card.css";
-import Back from "./images/back.svg";
-import Next from "./images/next.svg";
-import Star from "./images/star.svg";
-import Point from "./images/dot.svg";
-import Low from "./images/low.svg"
-import Box from "./images/box.svg"
-import Shop from "./images/shop.svg"
+import './Card.css'
+import Back from './images/back.svg'
+import Next from './images/next.svg'
+import Star from './images/star.svg'
+import Point from './images/dot.svg'
+import Low from './images/low.svg'
+import Box from './images/box.svg'
+import Shop from './images/shop.svg'
 
-import Slider from "react-slick"; 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
-import { useEffect, useRef, useState } from "react";
-import { Header } from "./header/Header";
+import { useEffect, useRef, useState } from 'react'
+import { Header } from '../header/Header'
 
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 export const Card = () => {
-
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<string[]>([])
 
   const [navBigSlider, setNavBigSlider] = useState<Slider | undefined>(
-    undefined
-  );
+    undefined,
+  )
   const [navLittleSlider, setNavLittleSlider] = useState<Slider | undefined>(
-    undefined
-  );
-  const [isHovered, setIsHovered] = useState(false);
+    undefined,
+  )
+  const [isHovered, setIsHovered] = useState(false)
 
-  const littleSliderRef = useRef<HTMLDivElement | null>(null);
+  const littleSliderRef = useRef<HTMLDivElement | null>(null)
 
   const littleSlider = {
     dots: false,
@@ -41,7 +40,7 @@ export const Card = () => {
     verticalSwiping: true,
     infinite: images.length >= 5,
     swipeToSlide: true,
-  };
+  }
 
   const bigSlider = {
     dots: false,
@@ -50,7 +49,7 @@ export const Card = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: images.length > 0,
-  };
+  }
 
   const downloadImages = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -62,45 +61,47 @@ export const Card = () => {
         const newImages = [...images, reader.result as string]
         setImages(newImages)
         localStorage.setItem('images', JSON.stringify(newImages))
-        console.log("Images after download:", newImages);
+        console.log('Images after download:', newImages)
       }
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file)
     }
   }
 
   useEffect(() => {
     const storedImages = localStorage.getItem('images')
     if (storedImages) {
-      const parsedImages = JSON.parse(storedImages);
-      setImages(parsedImages);
-      console.log("Images from localStorage:", parsedImages);
+      const parsedImages = JSON.parse(storedImages)
+      setImages(parsedImages)
+      console.log('Images from localStorage:', parsedImages)
     }
   }, [])
 
   useEffect(() => {
-     // Функция для обновления позиции стрелки
+    // Функция для обновления позиции стрелки
     const updateArrowPosition = () => {
       if (littleSliderRef.current) {
-        const sliderHeight = littleSliderRef.current.clientHeight;
-        const arrow = littleSliderRef.current.querySelector('.slick-next')  as HTMLElement;
+        const sliderHeight = littleSliderRef.current.clientHeight
+        const arrow = littleSliderRef.current.querySelector(
+          '.slick-next',
+        ) as HTMLElement
         if (arrow) {
-          arrow.style.top = `${sliderHeight - 40}px`; // Adjust the position as needed
+          arrow.style.top = `${sliderHeight - 40}px` // Adjust the position as needed
         }
       }
-    };
+    }
 
     // Вызов функции для установки начальной позиции стрелки
-    updateArrowPosition();
+    updateArrowPosition()
 
     // Добавление обработчика события resize(чтобы функция updateArrowPosition вызывалась каждый раз, когда размер окна изменяется)
-    window.addEventListener('resize', updateArrowPosition);
+    window.addEventListener('resize', updateArrowPosition)
 
     // Очистка обработчика события resize при размонтировании компонента
     return () => {
-      window.removeEventListener('resize', updateArrowPosition);
-    };
-  }, [images]);
+      window.removeEventListener('resize', updateArrowPosition)
+    }
+  }, [images])
   //Функция updateArrowPosition вызывается при изменении размера окна и при изменении состояния images.
 
   return (
@@ -111,13 +112,11 @@ export const Card = () => {
           <div className="container">
             <div className="back-to-main-page">
               <img src={Back} alt="иконка" />
-              <Link to='/'>
-              Главная
-              </Link>
+              <Link to="/">Главная</Link>
             </div>
             <div className="product-box">
               <div className="product-images">
-                <div className="little-slider" ref={littleSliderRef} >
+                <div className="little-slider" ref={littleSliderRef}>
                   <Slider
                     {...littleSlider}
                     ref={(slider) => setNavLittleSlider(slider || undefined)}
@@ -131,9 +130,11 @@ export const Card = () => {
                   </Slider>
                 </div>
 
-                <div className="big-slider" 
+                <div
+                  className="big-slider"
                   onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}>
+                  onMouseLeave={() => setIsHovered(false)}
+                >
                   <Slider
                     {...bigSlider}
                     ref={(slider) => setNavBigSlider(slider || undefined)}
@@ -145,7 +146,13 @@ export const Card = () => {
                       </div>
                     ))}
                   </Slider>
-                  <input type="file" onChange={downloadImages} style={{display : 'none'}} id="fileInput" />
+                  <input
+                    type="file"
+                    onChange={downloadImages}
+                    style={{ display: 'none' }}
+                    id="fileInput"
+                    accept="image/png, image/jpeg"
+                  />
                   {images.length === 0 || isHovered ? (
                     <label htmlFor="fileInput" className="download-btn">
                       Добавить серию фото
@@ -156,10 +163,10 @@ export const Card = () => {
               <div className="product-info">
                 <div className="info-brend">
                   <div className="info-brend--text">GREEKBAR</div>
-                  <img src={Next} alt="иконка" className="next-icon"/>
+                  <img src={Next} alt="иконка" className="next-icon" />
                 </div>
                 <div className="info-title">
-                Кофемолка электрическая для кофе, электрокофемолка
+                  Кофемолка электрическая для кофе, электрокофемолка
                 </div>
                 <div className="info-rating">
                   <div className="stars">
@@ -168,7 +175,7 @@ export const Card = () => {
                   </div>
                   <img src={Point} alt="иконка" />
                   <div className="opinions"> 17 920 оценок</div>
-                  <img src={Next} alt="иконка" className="next-icon"/>
+                  <img src={Next} alt="иконка" className="next-icon" />
                 </div>
                 <div className="second-info">
                   <div className="second-info--first">Черный</div>
@@ -185,7 +192,7 @@ export const Card = () => {
                     <div className="info-row">
                       <div className="info-label">Модель</div>
                       <div className="info-value">
-                      Электрическая кофемолка последнего поколения
+                        Электрическая кофемолка последнего поколения
                       </div>
                     </div>
                     <div className="info-row">
@@ -205,7 +212,9 @@ export const Card = () => {
                       <div className="info-value">3 года</div>
                     </div>
                   </div>
-                  <div className="all-description">Все характеристики и описание</div>
+                  <div className="all-description">
+                    Все характеристики и описание
+                  </div>
                 </div>
               </div>
               <div className="product-price">
@@ -240,6 +249,5 @@ export const Card = () => {
         </section>
       </div>
     </>
-  );
+  )
 }
-
