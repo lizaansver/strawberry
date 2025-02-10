@@ -8,7 +8,6 @@ body {
   box-sizing: border-box;
 }
 
-
 .back-to-main-page {
   display: flex;
   align-items: center;
@@ -23,7 +22,7 @@ body {
 }
 
 .back-to-main-page:hover {
- text-decoration: underline;
+  text-decoration: underline;
 }
 
 .back-to-main-page img {
@@ -45,7 +44,6 @@ body {
   height: 570px;
   position: relative;
 }
-
 
 .little-slider .slick-next {
   left: 50%;
@@ -211,7 +209,7 @@ body {
   height: 77px;
   border-radius: 5px;
   border: 1px solid #b7b7b7;
-  margin-bottom: 10px;  
+  margin-bottom: 10px;
 }
 
 .second-info--main {
