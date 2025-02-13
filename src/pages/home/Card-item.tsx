@@ -1,7 +1,7 @@
-import Next from './images/next.svg'
-import Star from './images/star.svg'
-import Point from './images/dot.svg'
-import Bin from './images/bin.svg'
+import Next from '../../images/next.svg'
+import Star from '../../images/star.svg'
+import Point from '../../images/dot.svg'
+import Bin from '../../images/bin.svg'
 import './Home.css'
 
 import { ProductProps } from '../../models/productProps' // мы не передаем весь массив продакст мы передаем только один объект продакт из него - а точнее его пропсы

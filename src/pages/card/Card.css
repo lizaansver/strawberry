@@ -237,7 +237,7 @@ body {
 .product-price {
   width: 330px;
   max-width: 100%;
-  height: 260px;
+  height: 275px;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
@@ -340,4 +340,34 @@ body {
 
 .all-description:hover {
   color: blueviolet;
+}
+
+@media (max-width: 1350px) {
+  .button-card {
+    padding: 15px 28px;
+  }
+
+  .product-price {
+    height: 285px;
+  }
+}
+
+/* @media (max-width: 1250px) {
+  .product-price {
+    height: 310px;
+  }
+} */
+
+@media (max-width: 1250px) {
+  .product-box {
+    flex-wrap: wrap;
+  }
+
+  .product-price {
+    width: 100%;
+  }
+
+  .button-card {
+    width: 100%;
+  }
 }

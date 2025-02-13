@@ -21,10 +21,7 @@ h2 {
 
 .card-list {
   display: grid;
-  grid-template-columns: repeat(
-    5,
-    minmax(0, 1fr)
-  ); /* Фиксированное количество колонок */
+  grid-template-columns: repeat(5,minmax(0, 1fr)); /* Фиксированное количество колонок */
   gap: 20px; /* Расстояние между карточками */
   margin-bottom: 20px;
 }
@@ -120,4 +117,28 @@ h2 {
 
 .card-btn h4 {
   margin: 0px;
+}
+
+@media (max-width: 1300px) {
+  .card-list{
+    grid-template-columns: repeat(4,minmax(0, 1fr)); /* Фиксированное количество колонок */
+  }
+}
+
+@media (max-width: 1130px) {
+  .card-list{
+    grid-template-columns: repeat(3,minmax(0, 1fr)); /* Фиксированное количество колонок */
+  }
+}
+
+@media (max-width: 870px) {
+  .card-list{
+    grid-template-columns: repeat(2,minmax(0, 1fr)); /* Фиксированное количество колонок */
+  }
+}
+
+@media (max-width: 570px) {
+  .card-list{
+    grid-template-columns: repeat(1,minmax(0, 1fr)); /* Фиксированное количество колонок */
+  }
 }

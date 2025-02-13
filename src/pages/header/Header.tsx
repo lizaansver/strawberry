@@ -1,7 +1,7 @@
-import MenuBurger from '../images/menu-burger.svg'
-import MapSpot from '../images/map-spot.svg'
-import Login from '../images/login.svg'
-import Bin from '../images/bin.svg'
+import MenuBurger from '../../images/menu-burger.svg'
+import MapSpot from '../../images/map-spot.svg'
+import Login from '../../images/login.svg'
+import Bin from '../../images/bin.svg'
 
 import './Header.css'
 
